@@ -1,0 +1,21 @@
+services:
+  # Backend API service
+  - type: web
+    name: redbus-clone-api
+    env: node
+    buildCommand: cd frontend/server && npm install
+    startCommand: cd frontend/server && node index.js
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: PORT
+        value: 5000
+
+  # Frontend static site
+  - type: static
+    name: redbus-clone-frontend
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist/frontend
+    envVars:
+      - key: API_URL
+        sync: false
