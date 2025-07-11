@@ -6,7 +6,7 @@ import { BusService } from '../../service/bus.service';
 @Component({
   selector: 'app-payment-page',
   templateUrl: './payment-page.component.html',
-  styleUrl: './payment-page.component.css'
+  styleUrls: ['./payment-page.component.css']
 })
 export class PaymentPageComponent implements OnInit{
   passseatarray:any[]=[]

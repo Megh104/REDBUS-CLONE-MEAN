@@ -1,23 +1,92 @@
-.HeaderOne{
-    background-color: #f8f4f4;
-    padding:10px 10px;
-    margin-bottom: 10px;
+.HeaderOne {
+  background-color: #f8f4f4;
+  padding: 16px;
+  margin-bottom: 12px;
 }
-.HeaderOne > p:nth-child(1){
-    margin: 10px 0px;
+
+.HeaderOne > p {
+  margin: 0;
+  font-size: 14px;
+  color: #3e3e52;
+  line-height: 1.4;
 }
-.HeaderTwo{
-    padding:10px 10px
+
+.HeaderOne > p:nth-child(1) {
+  margin-bottom: 8px;
+  font-weight: 600;
 }
-.HeaderTwo > *{
-    display: inline-block;
-    margin-right: 10px;
+
+.HeaderTwo {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
-.HeaderTwo > button{
-    padding: 5px;
-    width: 100px;
-    background-color: #f8f4f4;
-    border: 1px solid black;
-    border-radius: 2px;
-    outline:none
+
+.HeaderTwo > * {
+  margin: 0;
+}
+
+.HeaderTwo > button {
+  padding: 8px 16px;
+  min-width: 100px;
+  background-color: #f8f4f4;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  font-size: 13px;
+  color: #3e3e52;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.HeaderTwo > button:hover {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+  .HeaderOne {
+    padding: 12px;
+  }
+
+  .HeaderOne > p {
+    font-size: 13px;
+  }
+
+  .HeaderTwo {
+    padding: 12px;
+    justify-content: space-between;
+  }
+
+  .HeaderTwo > button {
+    flex: 1;
+    min-width: 80px;
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+/* Small Mobile Devices */
+@media screen and (max-width: 480px) {
+  .HeaderOne {
+    padding: 10px;
+  }
+
+  .HeaderOne > p {
+    font-size: 12px;
+  }
+
+  .HeaderTwo {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .HeaderTwo > button {
+    padding: 6px 10px;
+    min-width: 70px;
+    font-size: 11px;
+  }
 }

@@ -1,17 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
+
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.css'
+  styleUrls: ['./landing-page.component.css']
 })
-export class LandingPageComponent {
+export class LandingPageComponent implements OnInit {
+  currentLang: string;
   fromoption: string = ''
   tooption: string = ''
   date: string = ''
-  constructor(private router: Router, public dialog: MatDialog) { }
+
+  constructor(
+    private router: Router,
+    private translate: TranslateService,
+    public dialog: MatDialog
+  ) {
+    this.currentLang = this.translate.currentLang || 'en';
+  }
+
+  ngOnInit() {
+    // Subscribe to language changes
+    this.translate.onLangChange.subscribe(event => {
+      this.currentLang = event.lang;
+    });
+  }
+
   fromEvent(option: string) {
     this.fromoption = option;
     console.log(this.fromoption)

@@ -1,4 +1,50 @@
-.SelectBUS_MAINCONTENT{
-    display:grid;
-    grid-template-columns: 20% 80%;
+.selectbus {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  background: #fff;
+}
+
+.SelectBUS_MAINCONTENT {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* Tablet Responsive Styles */
+@media screen and (max-width: 1024px) {
+  .selectbus {
+    padding: 0 12px;
+  }
+
+  .SelectBUS_MAINCONTENT {
+    grid-template-columns: 25% 75%;
+    gap: 12px;
+  }
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+  .selectbus {
+    padding: 0 8px;
+  }
+
+  .SelectBUS_MAINCONTENT {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Small Mobile Devices */
+@media screen and (max-width: 480px) {
+  .selectbus {
+    padding: 0 4px;
+  }
+
+  .SelectBUS_MAINCONTENT {
+    gap: 12px;
+    margin-top: 12px;
+  }
 }

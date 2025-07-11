@@ -1,27 +1,142 @@
-.left{
-    padding: 15px;
-}
-.left ul{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.left_filters{
-    margin-bottom: 25px;
-}
-.left ul li{
-    border-bottom: 2px solid white;
-    padding :15px 0px;
-    cursor: pointer;
+.left {
+  padding: 16px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.left li i{
-    margin-right: 10px;
+.left ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.first-section{
+.left_filters {
+  margin-bottom: 24px;
+}
+
+.left_filters h3 {
+  font-size: 16px;
+  color: #3e3e52;
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+
+.left ul li {
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.left ul li:hover {
+  background-color: #f8f8f8;
+}
+
+.left ul li:last-child {
+  border-bottom: none;
+}
+
+.left li i {
+  margin-right: 12px;
+  color: #7e7e8c;
+  font-size: 18px;
+}
+
+.first-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  color: #3e3e52;
+  font-size: 14px;
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+  .left {
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+
+  .left_filters {
+    margin-bottom: 16px;
+  }
+
+  .left_filters h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .left ul li {
+    padding: 10px 0;
+  }
+
+  .first-section {
+    font-size: 13px;
+  }
+
+  .left li i {
+    font-size: 16px;
+  }
+}
+
+/* Small Mobile Devices */
+@media screen and (max-width: 480px) {
+  .left {
+    padding: 10px;
+    margin-bottom: 12px;
+  }
+
+  .left_filters h3 {
+    font-size: 13px;
+  }
+
+  .left ul li {
+    padding: 8px 0;
+  }
+
+  .first-section {
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .left li i {
+    font-size: 14px;
+    margin-right: 8px;
+  }
+}
+
+/* Filter Toggle for Mobile */
+.filter-toggle {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .filter-toggle {
     display: flex;
-    justify-content: flex-start;
-    column-gap: 10px;
     align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    background: #fff;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  .filter-toggle span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #3e3e52;
+  }
+
+  .filter-toggle i {
+    font-size: 20px;
+    color: #7e7e8c;
+  }
+
+  .left.mobile-hidden {
+    display: none;
+  }
 }

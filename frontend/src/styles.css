@@ -1,4 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Leaflet Map Styles */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+.leaflet-routing-container {
+  background-color: white;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.leaflet-routing-alt {
+  max-height: none !important;
+}
+
+/* Material Design Overrides */
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-chip {
+  font-size: 12px !important;
+}
+
+.mat-mdc-snack-bar-container {
+  margin: 16px !important;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,6 +41,39 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 ::-webkit-scrollbar{
     background: white;
     width: 0;
+}
+
+.fullscreen-dialog {
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+}
+
+.fullscreen-dialog .mat-mdc-dialog-container {
+  padding: 0;
+}
+
+.fullscreen-dialog .mat-mdc-dialog-surface {
+  border-radius: 0 !important;
+}
+
+/* Virtual Tour Dialog Styles */
+.virtual-tour-dialog {
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.virtual-tour-dialog .mat-mdc-dialog-container {
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+.virtual-tour-dialog .mat-mdc-dialog-surface {
+  border-radius: 0 !important;
+  background: #000 !important;
 }
 
 

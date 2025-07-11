@@ -1,239 +1,376 @@
 * {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.bus-box {
+  width: 100%;
+  min-height: 120px;
+  height: auto;
+  border: 1px solid #ddd;
+  margin-top: 12px;
+  color: #4a4a4a;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 12px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.bus-box:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* bus section 1 */
+.busBoxSection1 {
+  height: auto;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.busBoxSection1 > div {
+  height: 100%;
+  position: relative;
+  padding: 0 15px;
+}
+
+.busBoxSection1 > div:first-child {
+  padding-left: 0;
+}
+
+.busBoxSection1 > div:last-child {
+  padding-right: 0;
+}
+
+.busBoxSection1 > div:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 70%;
+  width: 1px;
+  background: #eee;
+}
+
+.busBoxSection11 {
+  width: 25%;
+}
+
+.busBoxSection11 > div:nth-child(1) {
+  color: #3e3e52;
+  line-height: 1.4;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.busBoxSection11 > div:nth-child(2) {
+  color: #7e7e8c;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+.busBoxSection12, .busBoxSection14 {
+  width: 12%;
+}
+
+.busBoxSection12 > div:nth-child(1),
+.busBoxSection14 > div:nth-child(1) {
+  color: #3e3e52;
+  line-height: 1.4;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.busBoxSection12 > div:nth-child(2),
+.busBoxSection14 > div:nth-child(2) {
+  color: #7e7e8c;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+.busBoxSection13 {
+  width: 8%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7e7e8c;
+  font-size: 13px;
+}
+
+.busBoxSection15 {
+  width: 12%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.busBoxSection15 > div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.busBoxSection15 > div:first-child {
+  background: #65a854;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.busBoxSection15 > div:first-child i {
+  font-size: 16px;
+}
+
+.busBoxSection15 > div:last-child {
+  color: #7e7e8c;
+  font-size: 13px;
+}
+
+.busBoxSection16 {
+  width: 15%;
+}
+
+.busBoxSection16 > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.busBoxSection16 > div:first-child div:first-child {
+  color: #7e7e8c;
+  font-size: 13px;
+}
+
+.busBoxSection16 > div:first-child div:last-child {
+  color: #3e3e52;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.busBoxSection16 > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  color: #d84e55;
+  font-size: 12px;
+}
+
+.busBoxSection17 {
+  width: 15%;
+}
+
+.busBoxSection17 > div:first-child {
+  height: 4px;
+  width: 60px;
+  border-radius: 2px;
+  background: #65a854;
+}
+
+.busBoxSection17 > div:nth-child(2),
+.busBoxSection17 > div:nth-child(3) {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #7e7e8c;
+}
+
+.busBoxSection17 > div:nth-child(2) div:first-child,
+.busBoxSection17 > div:nth-child(3) {
+  color: #3e3e52;
+  font-weight: 600;
+}
+
+/* Amenities Section */
+.busBoxSection2 {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border-bottom: 1px solid #eee;
+  flex-wrap: wrap;
+}
+
+.busBoxSection21 {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.busBoxSection21 span {
+  color: #7e7e8c;
+}
+
+.busBoxSection21 i {
+  font-size: 18px;
+}
+
+.busBoxSection22 {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.busBoxSection22 > div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: #f1f1f1;
+  border-radius: 2px;
+  font-size: 12px;
+  color: #3e3e52;
+}
+
+.busBoxSection22 i {
+  font-size: 14px;
+}
+
+/* Bottom Section */
+.bus-actions {
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.view-seats {
+  padding: 8px 20px;
+  background: #d84e55;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  width: auto;
+}
+
+.view-seats:hover {
+  background: #c04147;
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
   .bus-box {
-    width: 100%;
-    min-height: 180px;
-    height: auto;
-    border: 1px solid #ddd;
-    margin-top: 20px;
-    padding: 10px 0 0;
-    color: #4a4a4a;
-    /* font-family: Montserrat; */
-    font-size: 14px;
-    font-weight: 400;
-    padding: 10px;
+    padding: 8px;
   }
-  
-  .bus-box:hover {
-    box-shadow: 0 16px 30px 1px rgb(0 0 0 / 10%);
-    transition: 1s;
-  }
-  
-  .bus-box > * {
-    width: 100%;
-    /* border: 1px solid red; */
-  }
-  
-  /* bus section 1 */
+
   .busBoxSection1 {
-    height: 40%;
-    margin-bottom: 1%;
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  
-  
-  .busBoxSection1 > div {
-    height: 100%;
-  }
-  
-  .busBoxSection11 {
-    width: 25%;
-  }
-  
-  .busBoxSection11 > div:nth-child(1) {
-    color: #3e3e52;
-    line-height: 24px;
-    font-weight: 700;
-    font-size: 14px;
-  }
-  
-  .busBoxSection11 > div:nth-child(2) {
-    color: #7e7e8c;
-    margin-top: 12px;
-    font-size: 12px;
-  }
-  
-  .busBoxSection12 {
-    width: 10%;
-  }
-  
-  .busBoxSection12 > div:nth-child(1) {
-    color: #3e3e52;
-    line-height: 24px;
-    font-weight: 700;
-    font-size: 14px;
-  }
-  
-  .busBoxSection12 > div:nth-child(2) {
-    color: #7e7e8c;
-    margin-top: 12px;
-    font-size: 12px;
-  }
-  
-  .busBoxSection13 {
-    width: 10%;
-  }
-  
-  .busBoxSection13 > div {
-    font-size: 14px;
-    font-weight: 400;
-  }
-  
-  .busBoxSection14 {
-    width: 14%;
-  }
-  
-  .busBoxSection14 > div:nth-child(1) {
-    color: #3e3e52;
-    line-height: 24px;
-    font-weight: 700;
-    font-size: 14px;
-  }
-  
-  .busBoxSection14 > div:nth-child(2) {
-    color: #7e7e8c;
-    margin-top: 12px;
-    font-size: 12px;
-  }
-  
-  .busBoxSection15 {
-    width: 10%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
     flex-direction: column;
+    gap: 16px;
   }
-  
-  .busBoxSection15 > div {
-    width: 45px;
-    height: 25px;
+
+  .busBoxSection1 > div {
+    width: 100% !important;
+    padding: 0;
+  }
+
+  .busBoxSection1 > div:not(:last-child)::after {
+    display: none;
+  }
+
+  .busBoxSection11 > div:nth-child(1) {
+    font-size: 14px;
+  }
+
+  .busBoxSection12,
+  .busBoxSection14 {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
   }
-  
-  .busBoxSection15 > :nth-child(1) {
-    background-color: #62c18b;
-    color: white;
-    font-weight: 100;
-    border-radius: 4px;
-    margin-bottom: 3px;
+
+  .busBoxSection13 {
+    display: none;
   }
-  
-  .busBoxSection15 > :nth-child(1) > :nth-child(1) {
-    font-size: 17px;
-  }
-  
-  .busBoxSection15 > :nth-child(1) > :nth-child(2) {
-    font-size: 12px;
-  }
-  
-  .busBoxSection15 > :nth-child(2) > :nth-child(1) {
-    font-size: 17px;
-    margin-left: 5px;
-  }
-  
-  .busBoxSection15 > :nth-child(2) > :nth-child(2) {
-    font-size: 12px;
-  }
-  
-  .busBoxSection16 {
-    width: 15%;
-  }
-  
-  .busBoxSection16 > div:nth-child(1) {
-    width: 90%;
-    height: 17px;
-    color: #7e7e8c;
-    display: flex;
-    justify-content: flex-start;
-    font-size: 15px;
-  }
-  
-  .busBoxSection16 > div:nth-child(1) > div:nth-child(2) {
-    color: #3e3e52;
-    font-weight: 700;
-    margin-left: 7px;
-  }
-  
-  .busBoxSection16 > div:nth-child(2) {
-    width: 90%;
-    color: #7e7e8c;
-    font-size: 12px;
-    margin-top: 7px;
-    display: flex;
+
+  .busBoxSection15 {
     justify-content: flex-start;
   }
-  
-  .busBoxSection16 > div:nth-child(2) > :nth-child(1) {
-    color: red;
-    font-size: 15px;
+
+  .busBoxSection16 > div:first-child {
+    justify-content: space-between;
   }
-  
-  .busBoxSection16 > div:nth-child(2) > div:nth-child(2) {
-    margin-left: 7px;
-  }
-  
+
   .busBoxSection17 {
-    width: 15%;
-  }
-  
-  .busBoxSection17 > div:nth-child(1) {
-    height: 4px;
-    width: 72px;
-    border-radius: 3px;
-    background-color: red;
-  }
-  
-  .busBoxSection17 > div:nth-child(2),
-  .busBoxSection17 > div:nth-child(3) {
-    margin-top: 7px;
     display: flex;
-    color: #7b7b7b;
-  }
-  
-  .busBoxSection17 > div:nth-child(2) > div:nth-child(1),
-  .busBoxSection17 > div:nth-child(3) > div:nth-child(1) {
-    margin-right: 4px;
-    font-weight: 500;
-    color: black;
-  }
-  
-  /* bus box section 2 */
-  
-  .busBoxSection2 {
-    height: 16%;
-    margin-bottom: 1%;
-    display: flex;
-  }
-  
-  .busBoxSection21 {
-    width: 160px;
-    height: 100%;
-  }
-  
-  .busBoxSection22 {
-    width: auto;
-    display: flex;
-  }
-  
-  .busBoxSection22 > div {
-    display: flex;
+    justify-content: space-between;
     align-items: center;
+  }
+
+  .busBoxSection2 {
+    gap: 16px;
+  }
+
+  .busBoxSection21 {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .busBoxSection22 {
+    width: 100%;
     justify-content: flex-start;
-    margin-right: 10px;
-    border-radius: 3px;
-    background-color: #f8f4f4;
-    padding: 2.5px 8px;
-    font-size: 10px;
   }
-  
-  /* Bus box section 3 */
-  
-  .busBoxSection3 {
-    min-height:45%;
-    height: auto;
+
+  .bus-actions {
+    justify-content: center;
   }
+
+  .view-seats {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Small Mobile Devices */
+@media screen and (max-width: 480px) {
+  .bus-box {
+    margin-top: 8px;
+    padding: 8px;
+  }
+
+  .busBoxSection1 {
+    gap: 12px;
+  }
+
+  .busBoxSection11 > div:nth-child(1) {
+    font-size: 13px;
+  }
+
+  .busBoxSection11 > div:nth-child(2),
+  .busBoxSection12 > div:nth-child(2),
+  .busBoxSection14 > div:nth-child(2) {
+    font-size: 12px;
+  }
+
+  .busBoxSection15,
+  .busBoxSection16,
+  .busBoxSection17 {
+    font-size: 12px;
+  }
+
+  .busBoxSection21 {
+    gap: 12px;
+  }
+
+  .busBoxSection21 i {
+    font-size: 16px;
+  }
+
+  .busBoxSection22 > div {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+}

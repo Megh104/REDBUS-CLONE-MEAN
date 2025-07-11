@@ -1,3 +1,20 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<div class="app-container" [dir]="currentLang === 'hi' ? 'ltr' : 'ltr'">
+  <app-navbar></app-navbar>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  <app-footer></app-footer>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="loading" class="loading-overlay">
+    <div class="loading-spinner">
+      <mat-spinner></mat-spinner>
+      <p>{{ "COMMON.LOADING" | translate }}</p>
+    </div>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ "COMMON.ERROR" | translate }}: {{ errorMessage | translate }}</p>
+  </div>
+</div>

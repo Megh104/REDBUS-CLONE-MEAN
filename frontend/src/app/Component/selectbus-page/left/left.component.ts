@@ -1,64 +1,86 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { DataserviceService } from '../../../service/dataservice.service';
+
+interface SideFilterValues {
+  livetracking: boolean;
+  reschedulable: boolean;
+  departuretime: { [key: string]: boolean };
+  bustype: { [key: string]: boolean };
+  arrivaltime: { [key: string]: boolean };
+  amenities: { [key: string]: boolean };
+}
 
 @Component({
   selector: 'app-left',
   templateUrl: './left.component.html',
-  styleUrl: './left.component.css'
+  styleUrls: ['./left.component.css']
 })
-export class LeftComponent {
-  amenityIcon:{[key:string]: string}={
-    wifi: 'wifi',
-    waterBottle: 'local_drink',
-    blankets: 'hotel',
-    chargingPoint: 'battery_charging_full',
-    movie: 'movie',
+export class LeftComponent implements OnInit, OnDestroy {
+  isFiltersVisible = window.innerWidth > 768;
+  sidefiltervalues: SideFilterValues;
+  amenityIcon: { [key: string]: string } = {
+    'Charging Point': 'power',
+    'Movie': 'movie',
+    'Reading Light': 'wb_incandescent',
+    'Track My Bus': 'directions_bus'
+  };
+
+  private resizeListener: () => void;
+
+  constructor(private dataservice: DataserviceService) {
+    this.sidefiltervalues = { ...this.dataservice.sidefiltervalues };
+    this.resizeListener = () => {
+      this.isFiltersVisible = window.innerWidth > 768;
+    };
   }
-  sidefiltervalues:any={
-    livetracking:false,
-    reschedulable:false,
-    departuretime:{
-      "before 6 am":false,
-      "6 am to 12 pm": false,
-      "12pm to 6 pm ": false,
-      "after 6 pm": false,
-    },
-    bustype:{
-      Seater:false,
-      Sleeper:false,
-      Ac:false,
-      Nonac:false,
-    },
-    arrivaltime:{
-      "before 6 am":false,
-      "6 am to 12 pm": false,
-      "12pm to 6 pm ": false,
-      "after 6 pm": false,
-    },
-    amenities:{
-      wifi:false,
-      waterBottle:false,
-      blankets:false,
-      chargingPoint:false,
-      movie:false,
-    },
+
+  ngOnInit(): void {
+    // Handle initial visibility based on screen size
+    window.addEventListener('resize', this.resizeListener);
   }
-  getobjectkey(obj:any):string[]{
+
+  ngOnDestroy(): void {
+    // Clean up event listener
+    window.removeEventListener('resize', this.resizeListener);
+  }
+
+  toggleFilters(): void {
+    this.isFiltersVisible = !this.isFiltersVisible;
+  }
+
+  getobjectkey(obj: { [key: string]: boolean }): string[] {
     return Object.keys(obj);
   }
 
-  handlelivetrackingclick(): void{
-    this.sidefiltervalues.livetracking=!this.sidefiltervalues.livetracking
+  handlelivetrackingclick(): void {
+    this.sidefiltervalues.livetracking = !this.sidefiltervalues.livetracking;
+    this.updateFilters();
   }
-  handlerescheduleclick():void{
-    this.sidefiltervalues.reschedulable=!this.sidefiltervalues.reschedulable
+
+  handlerescheduleclick(): void {
+    this.sidefiltervalues.reschedulable = !this.sidefiltervalues.reschedulable;
+    this.updateFilters();
   }
-  handledeparturetimeclick(event:any,name:string):void{
-    this.sidefiltervalues.departuretime[name]=event.target.checked;
+
+  handledeparturetimeclick(event: Event, key: string): void {
+    const target = event.target as HTMLInputElement;
+    this.sidefiltervalues.departuretime[key] = target.checked;
+    this.updateFilters();
   }
-  handlearivaltimeclick(event:any,name:string):void{
-    this.sidefiltervalues.arrivaltime[name]=event.target.checked;
+
+  handlebustypeclick(event: Event, key: string): void {
+    const target = event.target as HTMLInputElement;
+    this.sidefiltervalues.bustype[key] = target.checked;
+    this.updateFilters();
   }
-  handlebustypeclick(event:any,name:string):void{
-    this.sidefiltervalues.bustype[name]=event.target.checked;
+
+  handlearivaltimeclick(event: Event, key: string): void {
+    const target = event.target as HTMLInputElement;
+    this.sidefiltervalues.arrivaltime[key] = target.checked;
+    this.updateFilters();
+  }
+
+  private updateFilters(): void {
+    this.dataservice.sidefiltervalues = { ...this.sidefiltervalues };
   }
 }

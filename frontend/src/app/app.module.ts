@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
@@ -33,6 +33,42 @@ import { PaymentPageComponent } from './Component/payment-page/payment-page.comp
 import { ProfilePageComponent } from './Component/profile-page/profile-page.component';
 import { MyTripComponent } from './Component/profile-page/my-trip/my-trip.component';
 import { HttpClientModule } from '@angular/common/http';
+import { VirtualTourComponent } from './Component/selectbus-page/right/view-seats/virtual-tour/virtual-tour.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+import { RoutePlannerComponent } from './Component/route-planner/route-planner.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+export function initializeApp(translate: TranslateService) {
+  return () => new Promise<void>(resolve => {
+    translate.addLangs(['en', 'hi']);
+    translate.setDefaultLang('en');
+    
+    // Get stored language preference or browser language
+    const storedLang = localStorage.getItem('preferredLanguage');
+    if (storedLang && ['en', 'hi'].includes(storedLang)) {
+      translate.use(storedLang).subscribe(() => resolve());
+    } else {
+      const browserLang = translate.getBrowserLang();
+      const lang = browserLang?.match(/en|hi/) ? browserLang : 'en';
+      localStorage.setItem('preferredLanguage', lang);
+      translate.use(lang).subscribe(() => resolve());
+    }
+  });
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +89,9 @@ import { HttpClientModule } from '@angular/common/http';
     BusBookingFormComponent,
     PaymentPageComponent,
     ProfilePageComponent,
-    MyTripComponent
+    MyTripComponent,
+    VirtualTourComponent,
+    RoutePlannerComponent
   ],
   imports: [
     BrowserModule,
@@ -69,9 +107,32 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     MatSidenavModule,
     MatDividerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    ReactiveFormsModule,
+    MatInputModule,
+    MatChipsModule,
+    MatListModule,
+    MatFormFieldModule,
   ],
-  providers: [provideNativeDateAdapter()],
+  providers: [
+    provideNativeDateAdapter(),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [TranslateService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

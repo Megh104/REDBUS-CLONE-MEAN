@@ -1,0 +1,46 @@
+/* Add styles to ensure navbar and its dropdowns are always on top */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* High z-index to ensure it's above all other elements */
+  background-color: white;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.language-menu {
+  z-index: 1001; /* Even higher z-index for the language dropdown */
+}
+
+/* Hide scrollbar but allow scrolling */
+.overflow-x-auto {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Ensure Google Sign In button fits properly */
+#google-btn {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Ensure dropdown menus don't overflow on mobile */
+.mat-menu-panel {
+  max-width: 90vw !important;
+}
+
+@media screen and (max-width: 768px) {
+  nav {
+    padding: 0.5rem 1rem;
+  }
+  
+  .language-menu {
+    right: 0;
+    left: auto;
+    min-width: 120px;
+  }
+}

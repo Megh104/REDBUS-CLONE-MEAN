@@ -1,33 +1,84 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { VirtualTourComponent } from './virtual-tour/virtual-tour.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-seats',
   templateUrl: './view-seats.component.html',
-  styleUrl: './view-seats.component.css'
+  styleUrls: ['./view-seats.component.css']
 })
-export class ViewSeatsComponent {
-@Input() filledseats:number[]=[]
-@Input() seatprice:number=0;
-@Input() routedetails: any;
-@Input() busid:string=''
-@Input() busarrivaltime: number =0;
-@Input() busdeparturetime:number=0;
-@Input() operatorname:string=''
-selectedseats:number[]=[];
-boardanddrop:boolean=false;
+export class ViewSeatsComponent implements OnInit {
+  @Input() filledseats: number[] = [];
+  @Input() seatprice: number = 0;
+  @Input() routedetails: any;
+  @Input() busid: string = '';
+  @Input() busarrivaltime: string = '';
+  @Input() busdeparturetime: string = '';
+  @Input() operatorname: string = '';
 
-generatearray(length:number):number[]{
-  return Array.from({length},(_,index)=>index +1);
-}
+  selectedseats: number[] = [];
+  showBookingForm: boolean = false;
 
-handleselectedseats(seatno:number):void{
-  if(this.selectedseats.includes(seatno)){
-    this.selectedseats=this.selectedseats.filter(item=> item !== seatno);
-  }else{
-    this.selectedseats.push(seatno)
+  constructor(private dialog: MatDialog, private router: Router) {}
+
+  ngOnInit(): void {}
+
+  generatearray(n: number): number[] {
+    return Array(n).fill(0).map((x, i) => i + 1);
   }
-}
-handleboarddrop():void{
-  this.boardanddrop=!this.boardanddrop
-}
+
+  handleselectedseats(seatno: number) {
+    const index = this.selectedseats.indexOf(seatno);
+    if (index === -1) {
+      this.selectedseats.push(seatno);
+    } else {
+      this.selectedseats.splice(index, 1);
+    }
+  }
+
+  proceedToBook() {
+    if (this.selectedseats.length === 0) {
+      // Show error message or alert
+      alert('Please select at least one seat');
+      return;
+    }
+    this.showBookingForm = true;
+  }
+
+  backToSeats() {
+    this.showBookingForm = false;
+  }
+
+  toggleVirtualTour() {
+    const dialogRef = this.dialog.open(VirtualTourComponent, {
+      width: '100%',
+      height: '90vh',
+      maxWidth: '100vw',
+      panelClass: 'virtual-tour-dialog'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Virtual tour closed');
+    });
+  }
+
+  continue() {
+    if (this.selectedseats.length === 0) {
+      alert('Please select at least one seat');
+      return;
+    }
+
+    // Navigate to payment page with selected seats
+    this.router.navigate(['/payment'], {
+      queryParams: {
+        selectedseat: this.selectedseats.join(','),
+        seatprice: this.seatprice,
+        busid: this.busid,
+        busarrivaltime: this.busarrivaltime,
+        busdeparturetime: this.busdeparturetime,
+        operatorname: this.operatorname
+      }
+    });
+  }
 }

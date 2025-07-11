@@ -1,0 +1,135 @@
+<div class="route-planner-container">
+  <div class="route-planner-sidebar">
+    <div class="route-form" [formGroup]="routeForm">
+      <h2>Plan Your Journey</h2>
+
+      <!-- Start Point -->
+      <mat-form-field appearance="outline" class="full-width">
+        <input
+          matInput
+          formControlName="startPoint"
+          placeholder="Start Point"
+          (input)="searchLocation($event.target.value)"
+        />
+        <mat-icon matSuffix>place</mat-icon>
+      </mat-form-field>
+
+      <!-- Popular Cities for Start -->
+      <div class="popular-cities">
+        <h4>Popular Starting Points</h4>
+        <div class="city-chips">
+          <mat-chip-set>
+            <mat-chip
+              *ngFor="let city of popularCities"
+              (click)="selectPopularCity(city, 'start')"
+            >
+              {{ city.name }}
+            </mat-chip>
+          </mat-chip-set>
+        </div>
+      </div>
+
+      <!-- Add Waypoint Button -->
+      <button mat-button class="add-waypoint-btn" (click)="addWaypoint()">
+        <mat-icon>add</mat-icon>
+        Add Waypoint
+      </button>
+
+      <!-- Waypoints -->
+      <div class="waypoints-container">
+        <div
+          *ngFor="let waypoint of waypoints; let i = index"
+          class="waypoint-item"
+        >
+          <mat-form-field appearance="outline" class="waypoint-input">
+            <input
+              matInput
+              [(ngModel)]="waypoint.location"
+              [ngModelOptions]="{ standalone: true }"
+              placeholder="Enter waypoint"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              color="warn"
+              (click)="removeWaypoint(i)"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- End Point -->
+      <mat-form-field appearance="outline" class="full-width">
+        <input
+          matInput
+          formControlName="endPoint"
+          placeholder="End Point"
+          (input)="searchLocation($event.target.value)"
+        />
+        <mat-icon matSuffix>place</mat-icon>
+      </mat-form-field>
+
+      <!-- Popular Cities for End -->
+      <div class="popular-cities">
+        <h4>Popular Destinations</h4>
+        <div class="city-chips">
+          <mat-chip-set>
+            <mat-chip
+              *ngFor="let city of popularCities"
+              (click)="selectPopularCity(city, 'end')"
+            >
+              {{ city.name }}
+            </mat-chip>
+          </mat-chip-set>
+        </div>
+      </div>
+
+      <!-- Search Results -->
+      <div class="search-results" *ngIf="searchResults.length > 0">
+        <mat-list>
+          <mat-list-item
+            *ngFor="let result of searchResults"
+            (click)="
+              selectLocation(
+                result,
+                routeForm.get('startPoint')?.value ? 'end' : 'start'
+              )
+            "
+          >
+            {{ result.name }}
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+      <!-- Calculate Route Button -->
+      <div class="action-buttons">
+        <button
+          mat-raised-button
+          (click)="updateRoute()"
+          [disabled]="!routeForm.valid"
+        >
+          Calculate Route
+        </button>
+      </div>
+
+      <!-- Route Information -->
+      <div class="route-info" *ngIf="estimatedTime && estimatedDistance">
+        <div class="info-item">
+          <mat-icon>schedule</mat-icon>
+          <span>{{ estimatedTime }}</span>
+        </div>
+        <div class="info-item">
+          <mat-icon>straighten</mat-icon>
+          <span>{{ estimatedDistance }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map Container -->
+  <div class="map-container">
+    <div #mapContainer id="map"></div>
+  </div>
+</div>

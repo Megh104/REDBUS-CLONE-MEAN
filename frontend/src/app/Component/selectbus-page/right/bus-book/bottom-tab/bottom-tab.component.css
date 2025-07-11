@@ -1,38 +1,107 @@
 .mainBar {
-    width: 60%;
-    display: flex;
-    margin-left: 40%;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .mainBar > div {
-    cursor: pointer;
-    color: #3e3e52;
-  }
-  
-  .mainBar > div:hover {
-    color: red;
-  }
-  
-  .mainBar > div:last-child {
-    border: 1px solid red;
-    display: inline-block;
-    padding: 6px 16px 7px;
-    text-transform: uppercase;
-    font-size: 13px;
-    font-weight: 400;
-    overflow: hidden;
-    position: relative;
-    text-decoration: none;
-    transition: 0.1s;
-    border: none;
-    text-align: center;
-    background-color: #d84e55;
-    color: #fff;
-  }
-  
-  .displayArea {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mainBar > div {
+  cursor: pointer;
+  color: #3e3e52;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.mainBar > div.divider {
+  color: #ddd;
+  cursor: default;
+}
+
+.mainBar > div:not(.divider):hover {
+  color: #d84e55;
+}
+
+.mainBar > div.view-seats-btn {
+  border: none;
+  padding: 8px 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  background-color: #d84e55;
+  color: #fff;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  margin-left: auto;
+  white-space: nowrap;
+  min-width: 120px;
+}
+
+.mainBar > div.view-seats-btn:hover {
+  background-color: #c04147;
+  color: #fff;
+}
+
+.displayArea {
+  width: 100%;
+  height: 100%;
+  margin-top: 16px;
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+  .mainBar {
     width: 100%;
-    height: 100%;
+    margin-left: 0;
+    padding: 8px 0;
+    justify-content: flex-start;
+    gap: 12px;
+    position: relative;
   }
+
+  .mainBar > div {
+    font-size: 13px;
+  }
+
+  .mainBar > div.divider {
+    display: none;
+  }
+
+  .mainBar > div.view-seats-btn {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    width: 100%;
+    border-radius: 0;
+    padding: 12px 20px;
+    z-index: 1000;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .displayArea {
+    margin-bottom: 60px; /* Add space for fixed button */
+  }
+}
+
+/* Small Mobile Devices */
+@media screen and (max-width: 480px) {
+  .mainBar {
+    gap: 8px;
+  }
+
+  .mainBar > div {
+    font-size: 12px;
+  }
+
+  .mainBar > div.view-seats-btn {
+    font-size: 13px;
+    padding: 10px 16px;
+  }
+}

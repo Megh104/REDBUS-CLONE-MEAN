@@ -1,13 +1,44 @@
 <div class="Header">
-    <div class="HeaderOne">
-        <p>
-            Home &gt; Bus Tickets &gt; {{this.departure}} Bus &gt; {{this.departure}} to {{this.arrival}}
-        </p>
-        <p>Fare Starts from INR 100 </p>
+  <div class="HeaderOne">
+    <p>
+      Home &gt; Bus Tickets &gt; {{ departure }} Bus &gt; {{ departure }} to
+      {{ arrival }}
+    </p>
+    <p>Fare Starts from INR 100</p>
+  </div>
+  <div class="HeaderTwo">
+    <h3>Departure to {{ arrival }} on {{ date }}</h3>
+  </div>
+</div>
+
+<div class="header-container">
+  <div class="route-info">
+    <div class="source-dest">
+      <h2>{{ departure }} - {{ arrival }}</h2>
+      <p>{{ date | date : "fullDate" }}</p>
     </div>
-    <div class="HeaderTwo">
-        <h3>
-            Departure to {{this.arrival}} on {{this.date}}
-        </h3>
+    <div class="modify-search">
+      <button (click)="modifySearch()">
+        {{ "BUS_SELECTION.MODIFY_SEARCH" | translate }}
+      </button>
     </div>
+  </div>
+  <div class="filters">
+    <div class="filter-item">
+      <input type="checkbox" [(ngModel)]="filters.ac" />
+      <label>{{ "BUS_SELECTION.AC" | translate }}</label>
+    </div>
+    <div class="filter-item">
+      <input type="checkbox" [(ngModel)]="filters.nonAc" />
+      <label>{{ "BUS_SELECTION.NON_AC" | translate }}</label>
+    </div>
+    <div class="filter-item">
+      <input type="checkbox" [(ngModel)]="filters.sleeper" />
+      <label>{{ "BUS_SELECTION.SLEEPER" | translate }}</label>
+    </div>
+    <div class="filter-item">
+      <input type="checkbox" [(ngModel)]="filters.seater" />
+      <label>{{ "BUS_SELECTION.SEATER" | translate }}</label>
+    </div>
+  </div>
 </div>
