@@ -11,6 +11,8 @@ services:
         sync: false
       - key: PORT
         value: 5000
+      - key: FRONTEND_URL
+        value: https://redbus-clone-frontend.onrender.com
 
   # Frontend web service
   - type: web
@@ -20,12 +22,13 @@ services:
     buildCommand: |
       cd frontend
       npm install
-      npm run build -- --configuration production
-    startCommand: cd frontend && npm start
+      npm install -g @angular/cli
+      ng build --configuration production
+    startCommand: cd frontend && node server.js
     envVars:
       - key: NODE_VERSION
         value: 18.0.0
       - key: API_URL
-        sync: false
+        value: https://redbus-clone-api.onrender.com
       - key: PORT
         value: 3000
