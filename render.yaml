@@ -11,11 +11,12 @@ services:
       - key: PORT
         value: 5000
 
-  # Frontend static site
-  - type: static
+  # Frontend web service
+  - type: web
     name: redbus-clone-frontend
+    env: node
     buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: frontend/dist/frontend
+    startCommand: cd frontend && npm install -g serve && serve -s dist/frontend -l 3000
     envVars:
       - key: API_URL
         sync: false
