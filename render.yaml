@@ -20,9 +20,9 @@ services:
     env: node
     plan: free
     buildCommand: |
+      npm install -g @angular/cli@17.3.0
       cd frontend
       npm install
-      npm install -g @angular/cli
       ng build --configuration production
     startCommand: cd frontend && node server.js
     envVars:

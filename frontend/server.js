@@ -9,11 +9,11 @@ app.use((req, res, next) => {
 });
 
 // Serve static files from the dist directory
-app.use(express.static(path.join(__dirname, 'dist/frontend/browser')));
+app.use(express.static(path.join(__dirname, 'dist/frontend')));
 
 // Send all requests to index.html
 app.get('/*', function(req, res) {
-  const indexPath = path.join(__dirname, 'dist/frontend/browser/index.html');
+  const indexPath = path.join(__dirname, 'dist/frontend/index.html');
   console.log('Serving index.html from:', indexPath);
   
   if (!require('fs').existsSync(indexPath)) {
@@ -35,5 +35,5 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Frontend server listening on port ${port}`);
   console.log('Server running in directory:', __dirname);
-  console.log('Looking for files in:', path.join(__dirname, 'dist/frontend/browser'));
+  console.log('Looking for files in:', path.join(__dirname, 'dist/frontend'));
 }); 
