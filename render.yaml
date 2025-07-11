@@ -21,6 +21,7 @@ services:
       npm install -g @angular/cli@17.3.0
       cd frontend
       npm install
+      cp -r src/assets/i18n dist/frontend/assets/
       ng build --configuration production
     publishPath: frontend/dist/frontend
     envVars:
