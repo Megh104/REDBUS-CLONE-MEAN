@@ -14,21 +14,17 @@ services:
       - key: FRONTEND_URL
         value: https://redbus-clone-frontend.onrender.com
 
-  # Frontend web service
-  - type: web
+  # Frontend static site
+  - type: static
     name: redbus-clone-frontend
-    env: node
-    plan: free
     buildCommand: |
       npm install -g @angular/cli@17.3.0
       cd frontend
       npm install
       ng build --configuration production
-    startCommand: cd frontend && node server.js
+    publishPath: frontend/dist/frontend
     envVars:
       - key: NODE_VERSION
         value: 18.0.0
       - key: API_URL
         value: https://redbus-clone-api.onrender.com
-      - key: PORT
-        value: 3000
