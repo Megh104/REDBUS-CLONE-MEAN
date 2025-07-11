@@ -3,6 +3,7 @@ services:
   - type: web
     name: redbus-clone-api
     env: node
+    plan: free
     buildCommand: cd frontend/server && npm install
     startCommand: cd frontend/server && node index.js
     envVars:
@@ -14,9 +15,10 @@ services:
   # Frontend web service
   - type: web
     name: redbus-clone-frontend
-    env: node
+    env: static
+    plan: free
     buildCommand: cd frontend && npm install && npm run build
-    startCommand: cd frontend && npm install -g serve && serve -s dist/frontend -l 3000
+    staticPublishPath: frontend/dist/frontend
     envVars:
       - key: API_URL
         sync: false
