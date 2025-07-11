@@ -4,6 +4,7 @@ services:
     name: redbus-clone-api
     env: node
     plan: free
+    region: oregon
     buildCommand: cd frontend/server && npm install
     startCommand: cd frontend/server && node index.js
     envVars:
@@ -12,13 +13,16 @@ services:
       - key: PORT
         value: 5000
 
-  # Frontend web service
+  # Frontend static site
   - type: web
     name: redbus-clone-frontend
-    env: static
+    env: node
     plan: free
+    region: oregon
     buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: frontend/dist/frontend
+    startCommand: cd frontend && npx serve -s dist/frontend -l $PORT
     envVars:
       - key: API_URL
         sync: false
+      - key: PORT
+        value: 10000
